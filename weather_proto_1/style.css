@@ -13,8 +13,8 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    background-image:url("https://static.vecteezy.com/system/resources/previews/005/572/340/original/foggy-landscape-forest-in-the-morning-beautiful-sunrise-mist-cover-mountain-background-at-countryside-winter-free-photo.jpg");
     background-size: cover;
-    background-image:url("https://img.freepik.com/premium-vector/vector-clouds-background_634779-112.jpg");
 }
 .card{
     background-color: rgba(0, 0, 0, 0.1);

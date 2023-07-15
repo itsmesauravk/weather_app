@@ -22,9 +22,9 @@ function weather(currentCity){
             <h4>${weatherDes}</h4>
             <div id='extra'>
                 <div class='extra-details'>max/min temp:<br> <p>${result.main.temp_max}°c <br>${result.main.temp_min}°c</p></div>
-                <div class='extra-details'>Wind-speed:<br> <p>${result.wind.speed}</p></div>
-                <div class='extra-details'>Humidity:<br><p> ${result.main.humidity}</p></div>
-                <div class='extra-details'>Pressure:<br> <p>${result.main.pressure}atm</p> </div>
+                <div class='extra-details'>Wind-speed:<br> <p>${result.wind.speed}m/s</p></div>
+                <div class='extra-details'>Humidity:<br><p> ${result.main.humidity}%</p></div>
+                <div class='extra-details'>Pressure:<br> <p>${result.main.pressure}mbar</p> </div>
             </div>
         </div>
         `
