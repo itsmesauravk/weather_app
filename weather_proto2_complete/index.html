@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather forcast</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/3845/3845731.png" type="image/png">
+</head>
+<body>
+    <div class="main">
+        <div class="card">
+            <div class="time"></div>
+            <div class="top">
+                <input class="enterValue" type="text" placeholder="Enter city name here..." autofocus>
+                <i id="search" class="fa-solid fa-magnifying-glass"></i>
+            </div>
+            <div class="details"></div> 
+            <button id="history">History >></button>
+        </div>
+        <div class="card2">
+            <button id="back"><< back</button>
+            <table id="weatherTable">
+                <thead>
+                    <tr>
+                        <th>City</th>
+                        <th>Date</th>
+                        <th>Temperature</th>
+                        <th>Humidity</th>
+                        <th>Pressure</th>
+                        <th>Wind</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody class="historyW">
+                    <!-- Data rows will be added here -->
+                </tbody>
+            </table>
+        </div>        
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
