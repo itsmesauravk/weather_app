@@ -21,6 +21,7 @@ function weather(city) {
         .then(data => {
             console.log(data);
             
+
             if (data.cod === 200) {
                 // Updating the HTML with the value
                 const {
@@ -36,6 +37,12 @@ function weather(city) {
                 } = data;
                 //for localstorage
                 localStorage.setItem(name,JSON.stringify(data))
+
+                localStorage.setItem("cityName: ",name)
+                
+                
+
+
                 //
                 let cityname = name;
                 let weatherImg = data.weather[0].icon;
@@ -65,6 +72,7 @@ function weather(city) {
                 .catch(error => {
                     console.error(error);
                 });
+
             } else {  // if failed in finding the city, gives City not found as a result
                 details.innerHTML = `<div id='error'>Unknown location,<br> please check and enter again !!<br>Thank you :)</h1>`;
                 card.style.backgroundColor = "rgba(200, 0, 0, 0.2)";
@@ -83,6 +91,9 @@ function weather(city) {
 function localDisplay(city) {
     console.log("localStorage: " + city);
     const data = localStorage.getItem(city);
+    
+    
+    
     if (!data) {
         console.log("Data not found in localStorage.");
         details.textContent = "No data found in Local Storage"
@@ -111,6 +122,8 @@ function localDisplay(city) {
             </div>
         </div>
         `
+        card.style.backgroundColor = "rgba(0, 0, 0, 0.2)";
+
     } catch (error) {
         console.error("Error parsing data:", error);
     }
@@ -119,14 +132,17 @@ function localDisplay(city) {
 
 //
 weather("New Forest");
+historY("New Forest")
 
 
 search.addEventListener('click', () => {
     let getCity = document.querySelector(".enterValue");
     if (isOnline()){
         weather(getCity.value);
+        historY(getCity.value)
     }else{
         localDisplay(getCity.value);
+        historY(getCity.value)
     }
     getCity.value = "";
 });
@@ -147,6 +163,7 @@ function saveWeatherDataToDatabase(city, data) {
     });
 }
 
+
 //for time display
 setInterval(()=>{
     document.querySelector(".time").textContent = Date();
@@ -163,14 +180,20 @@ back.addEventListener("click",()=>{
 })
 
 
-// //for history
-//for seven day 
-function historY() {
-    fetch('weather_his.php') // Use the correct path to your PHP script
+function historY(city) {
+    // Fetch weather history data for the specific city
+    fetch('weather_his.php', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: "city=" + encodeURIComponent(city)
+    })
     .then(response => response.json())
     .then(data => {
         // Process the JSON data and display it in your HTML
         const weatherTable = document.querySelector(".historyW");
+        weatherTable.innerHTML = ""; // Clear existing table data
 
         data.forEach(item => {
             const tableRow = document.createElement("tr");
@@ -185,12 +208,8 @@ function historY() {
             `;
             weatherTable.appendChild(tableRow);
         });
-        
     })
     .catch(error => {
         console.error('Error fetching weather data:', error);
     });
 }
-
-// Call the function to fetch and display the data
-historY();
